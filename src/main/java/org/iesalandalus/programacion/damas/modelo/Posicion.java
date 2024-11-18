@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.damas.modelo;
 
+import java.util.Objects;
+
 public class Posicion {
     private int fila;
     private char columna;
@@ -42,5 +44,20 @@ public class Posicion {
             throw new IllegalArgumentException("La columna debe estar desde la 'a' hasta la 'h'");
         }
         this.columna = columna; // solo se asigna si el valor es válido
+    }
+
+    // compara dos objetos "Posicion" por igualdad en fila y columna
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // mismo objeto
+        if (o == null || getClass() != o.getClass()) return false; // nulo o diferente clase
+        Posicion posicion = (Posicion) o; // cast seguro
+        return fila == posicion.fila && columna == posicion.columna;
+    }
+
+    // genera un código hash único basado en fila y columna
+    @Override
+    public int hashCode() {
+        return Objects.hash(fila, columna);
     }
 }
