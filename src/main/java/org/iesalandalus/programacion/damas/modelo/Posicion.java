@@ -9,6 +9,14 @@ public class Posicion {
         setFila(fila);
         setColumna(columna);
     }
+    // constructor copia
+    public Posicion(Posicion otraPosicion) {
+        if (otraPosicion == null) { // validar que no sea nulo el objeto recibido
+            throw new IllegalArgumentException("No se puede copiar una posición nula.");
+        }
+        setFila(otraPosicion.getFila());
+        setColumna(otraPosicion.getColumna());
+    }
 
     // getter fila
     public int getFila() {
@@ -24,11 +32,11 @@ public class Posicion {
     }
 
     // getter para columna
-    public int getColumna() {
+    public char getColumna() {
         return columna;
     }
 
-    //setter para columna con validación
+    // setter para columna con validación
     public void setColumna(char columna) {
         if(columna < 'a' || columna > 'h') {
             throw new IllegalArgumentException("La columna debe estar desde la 'a' hasta la 'h'");
