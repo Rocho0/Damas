@@ -4,6 +4,12 @@ public class Posicion {
     private int fila;
     private char columna;
 
+    // constructor que valida y asigna los valores usando los setters
+    public Posicion(int fila, char columna) {
+        setFila(fila);
+        setColumna(columna);
+    }
+
     // getter fila
     public int getFila() {
         return fila;
