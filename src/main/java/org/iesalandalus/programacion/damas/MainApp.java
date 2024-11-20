@@ -67,5 +67,15 @@ public class MainApp {
         }
     }
 
+    // metodo para mostrar la información de la dama
+    public static void mostrarDama() {
+        if (dama != null) { // comprobamos que la dama existe
+            System.out.println("Color de la dama: " + dama.getColor());
+            System.out.println("Posición de la dama: " + dama.getPosicion());
+        } else {
+            System.out.println("No se ha creado ninguna dama.");
+        }
+    }
+
 
 }
