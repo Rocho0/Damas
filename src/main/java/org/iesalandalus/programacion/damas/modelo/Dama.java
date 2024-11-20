@@ -11,7 +11,7 @@ public class Dama {
     // constructor por defecto (paso 3)
     public Dama() {
         this.color = Color.BLANCO; // blanca por defecto
-        this.posicion = posicionInicialAleatoria(color);
+        this.posicion = crearPosicionInicial(this.color);
         this.esDamaEspecial = false; // por defecto no es especial
     }
 
@@ -21,7 +21,7 @@ public class Dama {
             throw new IllegalArgumentException("El color no puede ser nulo");
         }
         this.color = color;
-        this.posicion = posicionInicialAleatoria(color); // asigna posición según color
+        this.posicion = crearPosicionInicial(color); // asigna posición según color
         this.esDamaEspecial = false; // por defecto no es especial
     }
 
@@ -62,7 +62,7 @@ public class Dama {
     }
 
     // metodo auxiliar para generar una posición inicial aleatoria válida
-    private Posicion posicionInicialAleatoria(Color color) {
+    private Posicion crearPosicionInicial(Color color) {
         Random random = new Random();
         int fila;
 
@@ -87,22 +87,14 @@ public class Dama {
 
         switch (fila) {
             case 1:
-                columnasValidas = List.of('a', 'c', 'e', 'g'); // casillas negras fila 1
+            case 3:
+            case 7:
+                columnasValidas = List.of('a', 'c', 'e', 'g');  // casillas negras filas 1, 3 y 7
                 break;
             case 2:
-                columnasValidas = List.of('b', 'd', 'f', 'h'); // casillas negras fila 2
-                break;
-            case 3:
-                columnasValidas = List.of('a', 'c', 'e', 'g'); // casillas negras fila 3
-                break;
             case 6:
-                columnasValidas = List.of('b', 'd', 'f', 'h'); // casillas negras fila 6
-                break;
-            case 7:
-                columnasValidas = List.of('a', 'c', 'e', 'g'); // casillas negras fila 7
-                break;
             case 8:
-                columnasValidas = List.of('b', 'd', 'f', 'h'); // casillas negras fila 8
+                columnasValidas = List.of('b', 'd', 'f', 'h');  // casillas negras filas 2, 6 y 8
                 break;
             default:
                 throw new IllegalArgumentException("Fila fuera de rango.");
