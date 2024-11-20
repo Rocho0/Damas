@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.damas;
 
 import org.iesalandalus.programacion.damas.modelo.Color;
+import org.iesalandalus.programacion.damas.modelo.Direccion;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Consola {
@@ -58,5 +59,33 @@ public class Consola {
         System.out.println("4. Noroeste");
     }
 
+    // metodo para elegir dirección
+    public static Direccion elegirDireccion() {
+        int opcion;
+        Direccion direccionElegida = null; // se inicializa a null
+        do {
+            System.out.println("Elige una dirección del menú (1 al 4): ");
+            opcion = Entrada.entero();
+
+            switch (opcion) {
+                case 1:
+                    direccionElegida = Direccion.NORESTE;
+                    break;
+                case 2:
+                    direccionElegida = Direccion.SURESTE;
+                    break;
+                case 3:
+                    direccionElegida = Direccion.SUROESTE;
+                    break;
+                case 4:
+                    direccionElegida = Direccion.NOROESTE;
+                    break;
+                default:
+                    System.out.println("Opción no válida. Por favor, elige una opción entre 1 y 4.");
+            }
+        }while (direccionElegida == null); // se repite hasta que se elija opción válida
+
+        return direccionElegida; // devuelve la dirección elegida
+    }
 
 }
