@@ -37,4 +37,10 @@ public class MainApp {
         System.out.println("Dama creada por defecto: " + dama);
     }
 
+    // metodo dama según color
+    public static void crearDamaColor() {
+        Color color = Consola.elegirOpcion();
+        dama = new Dama(color); // según el color almacenado en "color" crea una dama
+        System.out.println("Dama creada segñun el color " + color + ": " + dama);
+    }
 }
