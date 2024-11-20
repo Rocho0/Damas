@@ -43,4 +43,29 @@ public class MainApp {
         dama = new Dama(color); // según el color almacenado en "color" crea una dama
         System.out.println("Dama creada segñun el color " + color + ": " + dama);
     }
+
+    // metodo mover la dama
+    public static void mover() {
+        // mostrar el menú de direcciones
+        Consola.mostrarMenuDirecciones();
+
+        // elegir la dirección con el metodo de Consola
+        Direccion direccion = Consola.elegirDireccion();
+
+        // verificar si la dama es especial y permitir la entrada de pasos
+        int pasos = 1; // por defecto a 1 casilla para damas normales
+        if (dama.getEsDamaEspecial()) {
+            pasos = Consola.elegirPasos(); // pasos a elegir si es especial
+        }
+
+        // intentar mover la dama
+        try {
+            dama.mover(direccion, pasos); // Intentar mover la dama
+            System.out.println("Dama movida: " + dama);
+        } catch (OperationNotSupportedException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+
 }
