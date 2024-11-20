@@ -14,16 +14,16 @@ public class MainApp {
     public static void ejecutarOpcion(int opcion) {
         switch (opcion) {
             case 1:
-
+                // crear dama por defecto
+                crearDamaDefecto();
                 break;
             case 2:
-
+                // crear dama eligiendo color
+                crearDamaColor();
                 break;
             case 3:
-
-                break;
-            case 4:
-
+                // mover dama
+                moverDama();
                 break;
             default:
                 System.out.println("Opción no válida");
@@ -45,7 +45,7 @@ public class MainApp {
     }
 
     // metodo mover la dama
-    public static void mover() {
+    public static void moverDama() {
         // mostrar el menú de direcciones
         Consola.mostrarMenuDirecciones();
 
