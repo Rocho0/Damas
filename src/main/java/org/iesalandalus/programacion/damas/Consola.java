@@ -39,7 +39,7 @@ public class Consola {
             opcion = Entrada.entero();
 
             if (opcion != 1 && opcion != 2) {
-                System.out.println("Error, opción no válida. Elige el color de la dama (1 -> blanca | 2 -> negra): ");
+                System.out.println("Opción no válida. Elige el color de la dama (1 -> blanca | 2 -> negra): ");
             }
         } while (opcion != 1 && opcion != 2); // repetir hasta opción válida
 
@@ -86,6 +86,21 @@ public class Consola {
         }while (direccionElegida == null); // se repite hasta que se elija opción válida
 
         return direccionElegida; // devuelve la dirección elegida
+    }
+
+    // elegir pasos
+    public static int elegirPasos() {
+        int pasos;
+        do {
+            System.out.print("Introduce un número de casillas mayor o igual a 1: ");
+            pasos = Entrada.entero(); // lee el num de pasos y lo guarda en pasos
+
+            if (pasos < 1) {
+                System.out.println("Opción no válida. Por favor, introduce un número mayor o igual a 1: ");
+            }
+        } while (pasos < 1);
+
+        return pasos;
     }
 
 }
