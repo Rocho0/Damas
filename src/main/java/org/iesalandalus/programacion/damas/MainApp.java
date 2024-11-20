@@ -77,5 +77,17 @@ public class MainApp {
         }
     }
 
+    // metodo principal menú principal
+    public static void main(String[] args) {
+        int opcion;
 
+        // iterar mientras no elijamos salir (opción 4)
+        do {
+            Consola.mostrarMenu(); // menú principal
+            opcion = Consola.elegirOpcionMenu(); // pedir la opción al usuario
+            ejecutarOpcion(opcion); // ejecutar la opción seleccionada
+        } while (opcion != 4); // continuar hasta que se elija la opción 4 (salir)
+
+        Consola.despedirse(); // despedida al finalizar el programa
+    }
 }
