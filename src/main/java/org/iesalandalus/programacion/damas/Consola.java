@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.damas;
 
+import org.iesalandalus.programacion.damas.modelo.Color;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Consola {
@@ -8,7 +9,7 @@ public class Consola {
 
     }
 
-    public static void mostrarMenu () {
+    public static void mostrarMenu() {
         System.out.println("Menú principal Damas");
         System.out.println("1. Crear dama por defecto");
         System.out.println("2. Crear dama eligiendo el color");
@@ -28,4 +29,24 @@ public class Consola {
         } while (opcion < 1 || opcion > 4); // repite mientras la opción sea inválida
         return opcion; // devuelve la opción válida
     }
+
+    public static Color elegirOpcion() {
+        int opcion;
+        do {
+            System.out.println("Elige el color de la dama (1 -> blanca | 2 -> negra): ");
+            opcion = Entrada.entero();
+
+            if (opcion != 1 && opcion != 2) {
+                System.out.println("Error, opción no válida. Elige el color de la dama (1 -> blanca | 2 -> negra): ");
+            }
+        } while (opcion != 1 && opcion != 2); // repetir hasta opción válida
+
+        if (opcion == 1) {
+            return Color.BLANCO;
+        } else {
+            return Color.NEGRO;
+        }
+    }
+
+
 }
