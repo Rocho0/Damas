@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.damas.modelo;
 
+import javax.naming.OperationNotSupportedException;
 import java.util.Random;
 import java.util.List;
 
@@ -103,5 +104,83 @@ public class Dama {
         // selecciona una columna aleatoria de las válidas
         Random random = new Random();
         return columnasValidas.get(random.nextInt(columnasValidas.size()));
+    }
+
+    // metodo mover
+    public void mover(Direccion direccion, int pasos) throws OperationNotSupportedException {
+        // validación de dirección
+        if (direccion == null) {
+            throw new NullPointerException("La dirección no puede ser nula.");
+        }
+
+        // validación de pasos
+        if (pasos <= 0) {
+            throw new IllegalArgumentException("El número de pasos debe ser mayor que 0.");
+        }
+
+        // validación de movimiento permitido para damas no especiales
+        if (!esDamaEspecial) {
+            if (pasos != 1) {
+                throw new OperationNotSupportedException("Una dama no especial solo puede moverse 1 casilla.");
+            }
+
+            switch (color) {
+                case BLANCO:
+                    if (direccion != Direccion.NORESTE && direccion != Direccion.NOROESTE) {
+                        throw new OperationNotSupportedException("Una dama blanca solo puede avanzar Noreste o Noroeste mientras no sea especial.");
+                    }
+                    break;
+                case NEGRO:
+                    if (direccion != Direccion.SURESTE && direccion != Direccion.SUROESTE) {
+                        throw new OperationNotSupportedException("Una dama negra solo puede avanzar Sureste o Suroeste mientras no sea especial.");
+                    }
+                    break;
+            }
+        }
+
+        // nueva posición
+        int nuevaFila = posicion.getFila();
+        char nuevaColumna = posicion.getColumna();
+
+        switch (direccion) {
+            case NORESTE:
+                nuevaFila += pasos; // nuevaFila = nuevaFila + pasos
+                nuevaColumna += pasos;
+                break;
+            case NOROESTE:
+                nuevaFila += pasos;
+                nuevaColumna -= pasos;
+                break;
+            case SURESTE:
+                nuevaFila -= pasos;
+                nuevaColumna += pasos;
+                break;
+            case SUROESTE:
+                nuevaFila -= pasos;
+                nuevaColumna -= pasos;
+                break;
+        }
+
+        // límites del tablero
+        if (nuevaFila < 1 || nuevaFila > 8 || nuevaColumna < 'a' || nuevaColumna > 'h') {
+            throw new OperationNotSupportedException("El movimiento lleva a una posición fuera del tablero.");
+        }
+
+        // si llega al extremo del tablero, se convierte en "dama especial"
+        if ((color == Color.BLANCO && nuevaFila == 8) || (color == Color.NEGRO && nuevaFila == 1)) {
+            esDamaEspecial = true;
+        }
+
+        // actualizar posición si el movimiento es válido
+        posicion = new Posicion(nuevaFila, nuevaColumna);
+    }
+
+    @Override
+    public String toString() {
+        return "Dama{" +
+                "color = " + color +
+                ", posicion = " + posicion +
+                ", esDamaEspecial = " + esDamaEspecial +
+                '}';
     }
 }
