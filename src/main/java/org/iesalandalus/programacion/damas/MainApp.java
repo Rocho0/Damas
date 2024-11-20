@@ -31,4 +31,10 @@ public class MainApp {
         }
     }
 
+    // metodo dama por defecto
+    public static void crearDamaDefecto() {
+        dama = new Dama(); // crea una dama usando el constructor por defecto
+        System.out.println("Dama creada por defecto: " + dama);
+    }
+
 }
